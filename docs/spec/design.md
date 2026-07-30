@@ -128,7 +128,7 @@ Split by layer rather than applied uniformly:
 ```
 credit-risk-fraud-detector/
 ├── CLAUDE.md                  # supervisor rules: ticket format, advisory-not-blocking
-│                               #  review, workflow reminders (authored during implementation)
+│                               #  review, Copilot's role, workflow reminders
 ├── README.md                  # public-facing overview, live demo link, how to run
 ├── docs/
 │   └── spec/
@@ -149,12 +149,20 @@ credit-risk-fraud-detector/
 ```
 
 **Workflow:**
-- New public GitHub repo, separate from `ai_job_search`.
+- New public GitHub repo, separate from `ai_job_search` — created and owned by Pedro.
+  Repo setup, hosting/Render setup, and **all code (including the CI/CD YAML and
+  Dockerfile)** are written by Pedro. Claude's contribution is scoped to defining Issues
+  and reviewing PRs — Claude does not scaffold or write implementation code unless
+  explicitly asked.
 - Tickets are real **GitHub Issues** (title, description, acceptance criteria), written by
   Claude one at a time as supervisor, before each is picked up.
 - Per ticket: Pedro branches from `main` → implements → opens a PR referencing the issue
-  (`Closes #N`) → Claude reviews the diff (advisory comments, not a blocking gate) → Pedro
-  merges.
+  (`Closes #N`) → reviewed by **two reviewers**: Claude (advisory comments, not a blocking
+  gate) and **GitHub Copilot** (requested as an automated PR reviewer, using Pedro's GitHub
+  Premium student account) → Pedro merges.
+  - Copilot is used only as a reviewer, never as an implementer — its autonomous coding
+    agent is deliberately not assigned issues, since writing the code is the point of the
+    exercise for Pedro.
 - No formal sprint board — a one-person, one-week project doesn't need one. The milestone
   sequence in Section 6 is the plan.
 
